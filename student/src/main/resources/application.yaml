@@ -1,0 +1,26 @@
+axon:
+  serializer:
+    events: jackson
+  kafka:
+    bootstrap-servers: 192.168.10.88:9092
+#    producer:
+#      acks: all
+#      retries: 0
+#      batch-size: 16348
+#      buffer-memory: 33554432
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+#      transaction-id-prefix: kafka-sample
+    consumer:
+      enable-auto-commit: false
+      auto-commit-interval: 3000
+      event-processor-mode: pooled_streaming
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    fetcher:
+      poll-timeout: 3000
+    publisher:
+      confirmation-mode: transactional
+    default-topic: Axon-Events
+    message-converter-mode: default
+server:
+  port: 8081
